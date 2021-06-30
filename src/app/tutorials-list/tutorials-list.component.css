@@ -1,0 +1,10 @@
+.list{
+    padding: 2rem;
+}
+.add-link{
+    border: 2px solid #000;
+    text-align: center;
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
