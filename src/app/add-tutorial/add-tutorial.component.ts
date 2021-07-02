@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TutorialService } from 'src/app/tutorial.service';
 import { Router} from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";  
 
 @Component({
   selector: 'app-add-tutorial',
@@ -15,13 +16,14 @@ export class AddTutorialComponent implements OnInit {
   };
   submitted = false;
 
-  constructor(private tutorialService: TutorialService,private router:Router) { }
+  constructor(private tutorialService: TutorialService,private router:Router,private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     console.log("add");
   }
 
   saveTutorial(): void {
+    this.SpinnerService.show();
     const data = {
       title: this.tutorial.title,
       description: this.tutorial.description
@@ -32,6 +34,7 @@ export class AddTutorialComponent implements OnInit {
         (response:any) => {
           console.log(response);
           this.submitted = true;
+          this.SpinnerService.hide();  
         },
         (error:any) => {
           console.log(error);

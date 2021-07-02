@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 import { AddTutorialComponent } from './add-tutorial/add-tutorial.component';
 import { TutorialDetailsComponent } from './tutorial-details/tutorial-details.component';
+import { NgxSpinnerModule } from "ngx-spinner";  
 
 const appRoutes:Routes = [
   { path : '',component : LoginComponent},
@@ -49,7 +50,8 @@ const appRoutes:Routes = [
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

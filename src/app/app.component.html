@@ -3,4 +3,16 @@
 <app-two-way-bind></app-two-way-bind>
 <app-date-picker></app-date-picker> -->
 <!-- <app-login></app-login> -->
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <!-- <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li> -->
+    <li><a href="javascript:;" (click)="logIn()" *ngIf='!(authService.isLoggedIn$ | async)'>login</a></li>
+    <li class="float_right"><a href="javascript:;" *ngIf='authService.isLoggedIn$ | async' (click)="logOut()">logout</a></li>
+</ul>
+<br>
+<br>
 <router-outlet></router-outlet>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+    </ngx-spinner> 

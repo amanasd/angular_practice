@@ -16,6 +16,7 @@ export class TutorialsListComponent implements OnInit {
   constructor(private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem("token"));
     this.retrieveTutorials();
   }
 

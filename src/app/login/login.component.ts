@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../login.service'
 import { Router} from '@angular/router';
+import {AuthService} from '../auth.service';
+import { NgxSpinnerService } from "ngx-spinner";  
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   myReactiveForm:FormGroup;
 
-  constructor(private login:LoginService,private router:Router) {
+  constructor(private login:LoginService,private router:Router,public authService: AuthService,private SpinnerService: NgxSpinnerService) {
     this.myReactiveForm = new FormGroup({});
     
    }
@@ -27,11 +29,14 @@ export class LoginComponent implements OnInit {
   }
 
   formSubmit(){
+    this.SpinnerService.show();
     let parms = this.myReactiveForm.value;
     this.login.checkLogin(parms).subscribe((res)=>{
       this.data = res;
       if(this.data.success){
-        console.log(this.data);
+        localStorage.setItem('token',this.data.token);
+        this.authService.login();
+        this.SpinnerService.hide();  
         this.router.navigate(['/tutorials'])
       }
     })
